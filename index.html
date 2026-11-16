@@ -12,6 +12,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icono-180.png">
 <link rel="icon" type="image/png" sizes="32x32" href="icono-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icono-512.png">
 <link rel="icon" type="image/svg+xml" href="icono.svg">
 <style>
   :root { color-scheme: light dark; --fondo: #f3f5f8; --tinta: #10151d; --tinta-2: #556070; --acento: #1c5fb3; }
@@ -42,6 +43,11 @@
   <img src="icono-180.png" alt="">
   <h1>Masprat Bombas</h1>
   <p id="aviso">Abriendo el tablero…</p>
+  <ol id="pasos-pc" hidden>
+    <li>En <b>Chrome</b>, abre el menú <b>⋮</b>.</li>
+    <li><b>Transmitir, guardar y compartir</b> → <b>Instalar página como app</b>.</li>
+    <li>Si ya estaba instalada, desinstálala antes desde la app: <b>⋮</b> → <b>Desinstalar</b>.</li>
+  </ol>
   <ol id="pasos" hidden>
     <li>Toca <b>Compartir</b> (el cuadro con la flecha).</li>
     <li>Elige <b>Agregar a pantalla de inicio</b>.</li>
@@ -58,8 +64,9 @@
     document.body.classList.remove('arranque');
     document.getElementById('giro').hidden = true;
     document.getElementById('abrir').hidden = false;
-    document.getElementById('aviso').textContent = 'Para instalar la app en el iPhone:';
-    document.getElementById('pasos').hidden = false;
+    const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform));
+    document.getElementById('aviso').textContent = ios ? 'Para instalar la app en el iPhone:' : 'Para instalar la app en la computadora:';
+    document.getElementById(ios ? 'pasos' : 'pasos-pc').hidden = false;
   } else {
     location.replace(document.getElementById('abrir').href);
     // si Google tarda, el botón permite reintentar
