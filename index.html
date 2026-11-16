@@ -17,6 +17,7 @@
   :root { color-scheme: light dark; --fondo: #f3f5f8; --tinta: #10151d; --tinta-2: #556070; --acento: #1c5fb3; }
   @media (prefers-color-scheme: dark) { :root { --fondo: #0e1116; --tinta: #eef1f5; --tinta-2: #9aa5b4; --acento: #3a8ae6; } }
   html, body { height: 100%; margin: 0; }
+  [hidden] { display: none !important; }
   body { background: var(--fondo); color: var(--tinta); font: 16px/1.5 -apple-system, system-ui, sans-serif;
          display: grid; place-items: center; text-align: center; padding: 16px; box-sizing: border-box; }
   img { width: 96px; height: 96px; border-radius: 22px; }
@@ -25,10 +26,18 @@
   main { width: 100%; max-width: 340px; min-width: 0; }
   ol { text-align: left; margin: 0 0 20px; padding-left: 22px; color: var(--tinta-2); }
   li + li { margin-top: 6px; }
+  /* mientras salta al tablero: pantalla de arranque azul, como la de una app */
+  body.arranque { background: #1c5fb3; color: #fff; }
+  body.arranque p { color: rgba(255,255,255,.8); }
+  body.arranque a { background: #fff; color: #1c5fb3; }
+  .giro { width: 28px; height: 28px; margin: 4px auto 20px; border-radius: 50%; border: 3px solid rgba(255,255,255,.3);
+          border-top-color: #fff; animation: giro .8s linear infinite; }
+  @keyframes giro { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .giro { animation-duration: 2.4s; } }
   a { display: inline-block; padding: 10px 20px; border-radius: 10px; background: var(--acento); color: #fff; text-decoration: none; font-weight: 600; }
 </style>
 </head>
-<body>
+<body class="arranque">
 <main>
   <img src="icono-180.png" alt="">
   <h1>Masprat Bombas</h1>
@@ -38,17 +47,23 @@
     <li>Elige <b>Agregar a pantalla de inicio</b>.</li>
     <li>Deja activado <b>Abrir como app web</b> y toca <b>Agregar</b>.</li>
   </ol>
-  <a id="abrir" href="https://script.google.com/macros/s/AKfycbwT2qKxzqqirUboXLlObqShP4MvmZgn1xtOjKNXoTVTDmaRB7Un1dMF43hNyZOT1qE/exec">Abrir el tablero</a>
+  <div class="giro" id="giro"></div>
+  <a id="abrir" hidden href="https://script.google.com/macros/s/AKfycbwT2qKxzqqirUboXLlObqShP4MvmZgn1xtOjKNXoTVTDmaRB7Un1dMF43hNyZOT1qE/exec">Abrir el tablero</a>
 </main>
 <script>
   // ?quedarse: no salta al tablero, para poder instalar la app desde aquí. La dirección se
   // limpia para que el ícono instalado abra la lanzadora normal (que sí salta).
   if (new URLSearchParams(location.search).has('quedarse')) {
     history.replaceState(null, '', location.pathname);
+    document.body.classList.remove('arranque');
+    document.getElementById('giro').hidden = true;
+    document.getElementById('abrir').hidden = false;
     document.getElementById('aviso').textContent = 'Para instalar la app en el iPhone:';
     document.getElementById('pasos').hidden = false;
   } else {
     location.replace(document.getElementById('abrir').href);
+    // si Google tarda, el botón permite reintentar
+    setTimeout(() => { document.getElementById('abrir').hidden = false; }, 5000);
   }
 </script>
 </body>
