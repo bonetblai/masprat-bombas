@@ -22,6 +22,8 @@
   img { width: 96px; height: 96px; border-radius: 22px; }
   h1 { font-size: 22px; margin: 16px 0 4px; }
   p { margin: 0 0 20px; color: var(--tinta-2); }
+  ol { text-align: left; margin: 0 auto 20px; padding-left: 22px; max-width: 30ch; color: var(--tinta-2); }
+  li + li { margin-top: 6px; }
   a { display: inline-block; padding: 10px 20px; border-radius: 10px; background: var(--acento); color: #fff; text-decoration: none; font-weight: 600; }
 </style>
 </head>
@@ -29,9 +31,24 @@
 <main>
   <img src="icono-180.png" alt="">
   <h1>Masprat Bombas</h1>
-  <p>Abriendo el tablero…</p>
+  <p id="aviso">Abriendo el tablero…</p>
+  <ol id="pasos" hidden>
+    <li>Toca <b>Compartir</b> (el cuadro con la flecha).</li>
+    <li>Elige <b>Agregar a pantalla de inicio</b>.</li>
+    <li>Deja activado <b>Abrir como app web</b> y toca <b>Agregar</b>.</li>
+  </ol>
   <a id="abrir" href="https://script.google.com/macros/s/AKfycbwT2qKxzqqirUboXLlObqShP4MvmZgn1xtOjKNXoTVTDmaRB7Un1dMF43hNyZOT1qE/exec">Abrir el tablero</a>
 </main>
-<script>location.replace(document.getElementById('abrir').href);</script>
+<script>
+  // ?quedarse: no salta al tablero, para poder instalar la app desde aquí. La dirección se
+  // limpia para que el ícono instalado abra la lanzadora normal (que sí salta).
+  if (new URLSearchParams(location.search).has('quedarse')) {
+    history.replaceState(null, '', location.pathname);
+    document.getElementById('aviso').textContent = 'Para instalar la app en el iPhone:';
+    document.getElementById('pasos').hidden = false;
+  } else {
+    location.replace(document.getElementById('abrir').href);
+  }
+</script>
 </body>
 </html>
