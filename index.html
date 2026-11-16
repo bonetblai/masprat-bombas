@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Masprat Bombas</title>
+<!-- Lanzadora: da el ícono y el nombre de la app (Apps Script no deja ponerlos) y salta al tablero -->
+<meta name="apple-mobile-web-app-title" content="Masprat Bombas">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1c5fb3">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icono-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icono-32.png">
+<link rel="icon" type="image/svg+xml" href="icono.svg">
+<style>
+  :root { color-scheme: light dark; --fondo: #f3f5f8; --tinta: #10151d; --tinta-2: #556070; --acento: #1c5fb3; }
+  @media (prefers-color-scheme: dark) { :root { --fondo: #0e1116; --tinta: #eef1f5; --tinta-2: #9aa5b4; --acento: #3a8ae6; } }
+  html, body { height: 100%; margin: 0; }
+  body { background: var(--fondo); color: var(--tinta); font: 16px/1.5 -apple-system, system-ui, sans-serif;
+         display: grid; place-items: center; text-align: center; padding: 16px; box-sizing: border-box; }
+  img { width: 96px; height: 96px; border-radius: 22px; }
+  h1 { font-size: 22px; margin: 16px 0 4px; }
+  p { margin: 0 0 20px; color: var(--tinta-2); }
+  a { display: inline-block; padding: 10px 20px; border-radius: 10px; background: var(--acento); color: #fff; text-decoration: none; font-weight: 600; }
+</style>
+</head>
+<body>
+<main>
+  <img src="icono-180.png" alt="">
+  <h1>Masprat Bombas</h1>
+  <p>Abriendo el tablero…</p>
+  <a id="abrir" href="https://script.google.com/macros/s/AKfycbwT2qKxzqqirUboXLlObqShP4MvmZgn1xtOjKNXoTVTDmaRB7Un1dMF43hNyZOT1qE/exec">Abrir el tablero</a>
+</main>
+<script>location.replace(document.getElementById('abrir').href);</script>
+</body>
+</html>

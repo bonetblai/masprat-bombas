@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Logo de Masprat Bombas: casa con una gota, sobre el azul de la presión del tablero -->
+  <defs><linearGradient id="fondo-icono" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a8ae6"/><stop offset="1" stop-color="#1c5fb3"/></linearGradient></defs>
+  <rect width="512" height="512" fill="url(#fondo-icono)"/>
+  <path d="M100 248L256 112l156 136" fill="none" stroke="#fff" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M144 222v170a16 16 0 0 0 16 16h192a16 16 0 0 0 16-16V222" fill="none" stroke="#fff" stroke-width="32" stroke-linejoin="round"/>
+  <path d="M256 214c-30 38-58 72-58 102a58 58 0 0 0 116 0c0-30-28-64-58-102Z" fill="#fff"/>
+</svg>

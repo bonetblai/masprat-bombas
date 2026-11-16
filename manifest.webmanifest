@@ -1,0 +1,17 @@
+{
+  "name": "Masprat Bombas",
+  "short_name": "Masprat Bombas",
+  "description": "Tablero del cuarto de bombas de la casa Masprat",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1c5fb3",
+  "theme_color": "#1c5fb3",
+  "icons": [
+    { "src": "icono-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icono.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
